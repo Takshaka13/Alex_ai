@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex - Ваш идеальный сотрудник</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: #f0f0f0;
+        }
+        
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #718096;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 15px 20px;
+            background: #f7fafc;
+            border-radius: 12px;
+            min-width: 120px;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-top: 3px;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: #2d3748;
+            text-align: center;
+        }
+        
+        .intro-text {
+            font-size: 1.15rem;
+            color: #4a5568;
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        
+        .skill-grid {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateX(10px);
+            background: #edf2f7;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+        
+        .skill-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            min-width: 30px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin-top: 20px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e2e8f0;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px white;
+        }
+        
+        .time {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .principle-card {
+            padding: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .principle-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .principle-number {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .principle-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .principle-desc {
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+        
+        .metric-card {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .comparison-card {
+            padding: 25px;
+            border-radius: 15px;
+            background: #f8f9fa;
+        }
+        
+        .comparison-card.negative {
+            border: 2px solid #fed7d7;
+        }
+        
+        .comparison-card.positive {
+            border: 2px solid #c6f6d5;
+            background: linear-gradient(to bottom, #f0fff4, #f8f9fa);
+        }
+        
+        .comparison-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .comparison-card.negative h3 {
+            color: #e53e3e;
+        }
+        
+        .comparison-card.positive h3 {
+            color: #38a169;
+        }
+        
+        .comparison-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .comparison-list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .comparison-list li::before {
+            content: '→';
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .total-cost {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .price-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 30px;
+            margin-top: 20px;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .live-counter {
+            animation: countUp 1s ease;
+        }
+        
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .highlight {
+            background: linear-gradient(to right, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="avatar">
+                <img src="" alt="Alex - ваш идеальный сотрудник">
+            </div>
+            <h1>Привет! Меня зовут Alex</h1>
+            <p class="subtitle">
+                Я первый сотрудник, который обожает работу<br>
+                и четко выполняет все ваши регламенты и инструкции
+            </p>
+            
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-number live-counter">5 сек</div>
+                    <div class="stat-label">Время ответа</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number live-counter">24/7</div>
+                    <div class="stat-label">График</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number live-counter">99.9%</div>
+                    <div class="stat-label">Точность</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number live-counter">0 дней</div>
+                    <div class="stat-label">Больничные</div>
+                </div>
+            </div>
+        </header>
+        
+        <section class="section">
+            <h2>Почему именно я?</h2>
+            <p class="intro-text">
+                Каждый день компании теряют миллионы из-за медленных ответов.<br>
+                Я решаю эту проблему раз и навсегда.
+            </p>
+            <div class="metric-card">
+                <span>Ответ в первую минуту увеличивает конверсию на</span>
+                <span class="metric-value">391%</span>
+            </div>
+            <div class="metric-card">
+                <span>Клиентов покупают у того, кто ответил первым</span>
+                <span class="metric-value">78%</span>
+            </div>
+            <div class="metric-card">
+                <span>Лидов уходят к конкурентам за первые 5 минут</span>
+                <span class="metric-value">50%</span>
+            </div>
+            <p style="margin-top: 25px; font-size: 1.3rem; font-weight: bold; text-align: center; color: #667eea;">
+                Я отвечаю за 5 секунд. Всегда. Даже сейчас.
+            </p>
+        </section>
+        
+        <section class="section">
+            <h2>Мои профессиональные навыки</h2>
+            <div class="skill-grid">
+                <div class="skill-item">
+                    <span class="skill-icon">⚡</span>
+                    <div>
+                        <strong>Мгновенная реакция на запросы</strong><br>
+                        <small>WhatsApp, Telegram, Email — работаю во всех каналах одновременно</small>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📋</span>
+                    <div>
+                        <strong>Ведение заявок в CRM</strong><br>
+                        <small>Интегрируюсь с любой системой, даже если это Excel</small>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🔄</span>
+                    <div>
+                        <strong>Умное дублирование заявок</strong><br>
+                        <small>Экономлю 15 минут на каждой повторной операции</small>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📊</span>
+                    <div>
+                        <strong>Контроль статусов и сроков</strong><br>
+                        <small>Клиент всегда в курсе состояния своего запроса</small>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">🧠</span>
+                    <div>
+                        <strong>Идеальная память</strong><br>
+                        <small>Помню всю историю взаимодействия с каждым клиентом</small>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📚</span>
+                    <div>
+                        <strong>Следование регламентам</strong><br>
+                        <small>Ваши инструкции — мой закон. Выполняю без отклонений</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Мой типичный рабочий день</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="time">03:47</span> — Ночной запрос от VIP-клиента. Ответ за 5 секунд. Сделка на 150,000₽ сохранена.
+                </div>
+                <div class="timeline-item">
+                    <span class="time">09:15</span> — Утренний пик: 47 обращений за 5 минут. Все обработаны, приоритеты расставлены.
+                </div>
+                <div class="timeline-item">
+                    <span class="time">14:22</span> — Коллеги на обеденном перерыве. Я продолжаю вести диалоги с клиентами.
+                </div>
+                <div class="timeline-item">
+                    <span class="time">19:45</span> — Конкуренты уже закрыты. Их потенциальные клиенты обращаются к нам.
+                </div>
+                <div class="timeline-item">
+                    <span class="time">23:59</span> — Подвожу итоги: 523 обращения, 0 потерянных заявок, готовность к работе 100%.
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Мои рабочие принципы</h2>
+            <div class="principle-card">
+                <div class="principle-number">1️⃣</div>
+                <div class="principle-title">Принцип скорости</div>
+                <div class="principle-desc">
+                    Клиент получает ответ максимум за 10 секунд.<br>
+                    <small>McKinsey: быстрый ответ повышает лояльность на 80%</small>
+                </div>
+            </div>
+            <div class="principle-card">
+                <div class="principle-number">2️⃣</div>
+                <div class="principle-title">Принцип памяти</div>
+                <div class="principle-desc">
+                    Помню каждую деталь о клиенте и его запросах.<br>
+                    <small>Salesforce: персонализация увеличивает конверсию на 202%</small>
+                </div>
+            </div>
+            <div class="principle-card">
+                <div class="principle-number">3️⃣</div>
+                <div class="principle-title">Принцип точности</div>
+                <div class="principle-desc">
+                    Данные — это святое. Ошибки исключены.<br>
+                    <small>IBM: человеческий фактор — 3% ошибок, мой — 0.01%</small>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Сравнение эффективности</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card negative">
+                    <h3>❌ Обычный сотрудник</h3>
+                    <ul class="comparison-list">
+                        <li>Зарплата: 60,000₽/мес</li>
+                        <li>Обучение: 3 месяца</li>
+                        <li>Отпуск: 28 дней/год</li>
+                        <li>Больничные: ~14 дней/год</li>
+                        <li>Ошибки: 3-5%</li>
+                        <li>График: 5/2, с 9 до 18</li>
+                        <li>Производительность падает к вечеру</li>
+                    </ul>
+                    <div class="total-cost" style="color: #e53e3e;">
+                        Итого в год: ~1,000,000₽
+                    </div>
+                </div>
+                <div class="comparison-card positive">
+                    <h3>✅ Я (Alex)</h3>
+                    <ul class="comparison-list">
+                        <li>Единоразово: 150,000₽</li>
+                        <li>Поддержка: 20,000₽/мес</li>
+                        <li>Отпуск: 0 дней</li>
+                        <li>Больничные: 0 дней</li>
+                        <li>Ошибки: 0.01%</li>
+                        <li>График: 24/7/365</li>
+                        <li>Производительность всегда 100%</li>
+                    </ul>
+                    <div class="total-cost" style="color: #38a169;">
+                        Итого в год: 390,000₽
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; font-size: 1.4rem; font-weight: bold;">
+                <span class="highlight">Экономия: 610,000₽ в год + работаю как 3 сотрудника</span>
+            </p>
+        </section>
+        
+        <div class="cta-section">
+            <h2>Давайте работать вместе!</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 20px;">
+                Готов приступить к работе прямо сейчас.<br>
+                Первый день — бесплатный тест. Покажу результаты.
+            </p>
+            
+            <div class="price-tag">
+                💼 Инвестиция: 150,000₽ однократно + 20,000₽/мес поддержка
+            </div>
+            
+            <a href="#" class="cta-button" onclick="alert('Отлично! Напишите моему руководителю для начала сотрудничества:\n📱 WhatsApp: +7 XXX XXX-XX-XX\n📧 Email: contact@example.com'); return false;">
+                Назначить встречу с Alex
+            </a>
+            
+            <p style="margin-top: 30px; opacity: 0.9; font-size: 1.1rem;">
+                P.S. Пока вы читали эту страницу, я мог бы обработать 47 заявок<br>
+                и ответить на 126 сообщений клиентов 🚀
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Анимация счетчиков при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            const counters = document.querySelectorAll('.live-counter');
+            counters.forEach(counter => {
+                counter.style.animation = 'countUp 1s ease';
+            });
+            
+            // Плавная прокрутка
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            // Добавляем интерактивность к метрикам
+            const metricCards = document.querySelectorAll('.metric-card');
+            metricCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.animation = 'fadeInUp 0.6s ease';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
